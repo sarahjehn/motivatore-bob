@@ -10,6 +10,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 /**
  * Created by sarahjehn on 16.04.16.
@@ -20,6 +22,9 @@ public abstract class AbstractResponseBehaviour implements ResponseBehaviour {
 
     protected final SlackWebApiClient slackWebApiClient;
     private static final String BOT = "U0PCPHFU4";
+
+    protected final Logger l = Logger.getLogger(ResponseBehaviour.class.getName());
+
 
     @Autowired
     public AbstractResponseBehaviour(SlackWebApiClient slackWebApiClient){
@@ -49,6 +54,7 @@ public abstract class AbstractResponseBehaviour implements ResponseBehaviour {
     protected abstract List<ReactionMessage> constructReaction(JsonNode event, ActionResult result);
 
     private void postMessage(JsonNode event, String response){
+        l.log(Level.INFO, "postMessage: event: " + event + "| response: " + response);
         ChatPostMessageMethod postMessageMethod = new ChatPostMessageMethod(getChannel(event), response);
         postMessageMethod.setAs_user(true);
         postMessageMethod.setUsername(getBotUser());
@@ -62,6 +68,9 @@ public abstract class AbstractResponseBehaviour implements ResponseBehaviour {
 
     private void addReaction(List<ReactionMessage> reactions){
         for(ReactionMessage reaction : reactions){
+            l.log(Level.INFO, "add a reaction: emoji: "
+                    + reaction.getEmojiName() + "| reaction timestamp: " + reaction.getMessageTimestamp());
+
             slackWebApiClient.addReactionToMessage(reaction.getEmojiName(),
                     reaction.getChannel(), reaction.getMessageTimestamp());
         }

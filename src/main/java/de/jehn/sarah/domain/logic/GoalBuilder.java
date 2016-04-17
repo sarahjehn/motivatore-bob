@@ -3,12 +3,8 @@ package de.jehn.sarah.domain.logic;
 import com.fasterxml.jackson.databind.JsonNode;
 import de.jehn.sarah.domain.model.Goal;
 import flowctrl.integration.slack.type.Message;
-import flowctrl.integration.slack.type.User;
 
-import java.time.Instant;
-import java.time.LocalDate;
 import java.time.LocalDateTime;
-import java.time.ZoneId;
 import java.time.format.DateTimeFormatter;
 import java.util.UUID;
 
@@ -17,24 +13,17 @@ import java.util.UUID;
  */
 public class GoalBuilder {
 
-    public static Goal buildGoal(Message message){
-
-        UUID uuid = UUID.randomUUID();
-        String name = message.getText();
-        String user = message.getUser();
-        LocalDateTime createdAt = LocalDateTime.now();
-        int goalWeek = Integer.parseInt(createdAt.format(DateTimeFormatter.ofPattern("ww")));
-
-        return new Goal(uuid, name, user, createdAt, goalWeek);
-    }
-
     public static Goal buildGoal(JsonNode event){
         UUID uuid = UUID.randomUUID();
-        String name = event.findValue("text").textValue();
+        String name = prepareGoalNameFormat(event);
         String user = event.findValue("user").textValue();
-        LocalDateTime createdAt = LocalDateTime.now();
-        int goalWeek = Integer.parseInt(createdAt.format(DateTimeFormatter.ofPattern("ww")));
+        String createdAt = event.findValue("ts").textValue();
+        int goalWeek = Integer.parseInt(LocalDateTime.now().format(DateTimeFormatter.ofPattern("ww")));
 
-        return new Goal(uuid, name, user, createdAt, goalWeek);
+        return new Goal(uuid, name, user, createdAt, goalWeek, false);
+    }
+
+    private static String prepareGoalNameFormat(JsonNode event){
+        return event.findValue("text").textValue().replaceAll(">", "");
     }
 }

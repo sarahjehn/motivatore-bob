@@ -1,10 +1,9 @@
 package de.jehn.sarah.configuration;
 
+
+import org.apache.tomcat.dbcp.dbcp.BasicDataSource;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
-
-import java.net.URI;
-import java.net.URISyntaxException;
 
 /**
  * Created by sarahjehn on 28.02.16.
@@ -12,14 +11,14 @@ import java.net.URISyntaxException;
 
 @Configuration
 public class PostgreConfiguration {
-/*
-        @Bean
-        public BasicDataSource dataSource() throws URISyntaxException {
-            URI dbUri = new URI(System.getenv("DATABASE_URL"));
 
-            String username = dbUri.getUserInfo().split(":")[0];
-            String password = dbUri.getUserInfo().split(":")[1];
-            String dbUrl = "jdbc:postgresql://" + dbUri.getHost() + ':' + dbUri.getPort() + dbUri.getPath();
+
+        @Bean
+        public BasicDataSource dataSource() {
+
+            String dbUrl = System.getenv("JDBC_DATABASE_URL");
+            String username = System.getenv("JDBC_DATABASE_USERNAME");
+            String password = System.getenv("JDBC_DATABASE_PASSWORD");
 
             BasicDataSource basicDataSource = new BasicDataSource();
             basicDataSource.setUrl(dbUrl);
@@ -28,5 +27,4 @@ public class PostgreConfiguration {
 
             return basicDataSource;
         }
-    }*/
-}
+    }

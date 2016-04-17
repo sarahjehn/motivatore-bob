@@ -12,13 +12,19 @@ import java.util.List;
  * Created by sarahjehn on 17.04.16.
  */
 public class DefaultResponseBehaviour extends AbstractResponseBehaviour {
-    public DefaultResponseBehaviour(SlackWebApiClient slackWebApiClient) {
+
+    private static String DEFAULT_RESPONSE = "Ooops, I didn't understand.";
+
+    private MessageType type;
+
+    public DefaultResponseBehaviour(SlackWebApiClient slackWebApiClient, MessageType type) {
         super(slackWebApiClient);
+        this.type = type;
     }
 
     @Override
     protected MessageType getResponseType() {
-        return null;
+        return type;
     }
 
     @Override
@@ -33,11 +39,18 @@ public class DefaultResponseBehaviour extends AbstractResponseBehaviour {
 
     @Override
     protected String constructResponse(JsonNode event, ActionResult result, String predefinedText) {
-        return null;
+        if (predefinedText != null) {
+            return predefinedText;
+        } else
+        return DEFAULT_RESPONSE;
     }
 
     @Override
     protected List<ReactionMessage> constructReaction(JsonNode event, ActionResult result) {
         return null;
+    }
+
+    public void setMessageType(){
+        this.type = type;
     }
 }

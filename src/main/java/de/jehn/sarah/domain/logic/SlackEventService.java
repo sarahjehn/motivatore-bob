@@ -1,8 +1,6 @@
 package de.jehn.sarah.domain.logic;
 
 import com.fasterxml.jackson.databind.JsonNode;
-import de.jehn.sarah.domain.logic.eventBehaviour.ActionBehaviour;
-import de.jehn.sarah.domain.logic.eventBehaviour.ResponseBehaviour;
 import de.jehn.sarah.domain.logic.eventBehaviour.SimpleServiceBehaviourFactory;
 import de.jehn.sarah.domain.model.ActionResult;
 import de.jehn.sarah.domain.model.MessageType;
@@ -21,7 +19,9 @@ public class SlackEventService {
     private ActionBehaviour actionBehaviour;
     private ResponseBehaviour responseBehaviour;
 
+    @Autowired
     private GoalRepository repository;
+    @Autowired
     private SimpleServiceBehaviourFactory behaviourFactory;
 
     @Autowired

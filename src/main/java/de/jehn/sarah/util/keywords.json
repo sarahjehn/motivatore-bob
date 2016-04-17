@@ -1,5 +1,7 @@
 {
-"keywordCluster":[
-    {"type":"NEW_GOAL", "keywords":[{"keyword":"new"}, {"keyword":"goal"}]}
+"clusters":[{"type":"NEW_GOAL", "keywords":[">"]},
+  {"type":"GREETING", "keywords":["hi"]},
+  {"type":"GREETING", "keywords":["hello"]},
+  {"type":"RETRIEVE_RECENT_GOALS", "keywords":["show","goals"]}
 ]
 }
