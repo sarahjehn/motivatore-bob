@@ -26,26 +26,15 @@ public class RemoveGoalActionBehaviour implements ActionBehaviour {
     public ActionResult action(JsonNode event, GoalRepository repository) {
         String user = getUser(event);
         int indexOfGoalToBeMarkedAsDone = getReactionNumber(event);
-
-        l.log(Level.INFO, "goal to be removed: " + indexOfGoalToBeMarkedAsDone);
-
-
         List<Goal> goalsToBeMarkedAsDone = repository.getRemainingGoals(LocalDateTime.now(), user);
-
-        l.log(Level.INFO, "size of remaining goals: " + goalsToBeMarkedAsDone.size());
-
         ActionResult action = null;
 
         if(goalsAvailableForMarkAsDone(indexOfGoalToBeMarkedAsDone, goalsToBeMarkedAsDone.size())){
-            l.log(Level.INFO, "it is in mark to be done");
             repository.markAsDone(goalsToBeMarkedAsDone.get(indexOfGoalToBeMarkedAsDone).getUuid(), user);
             action = new ActionResult<Goal> (repository.getRemainingGoals(LocalDateTime.now(), user));
         } else {
             action = new ActionResult<String>(singletonList("Oops, this goal was already marked as done"));
         }
-
-        l.log(Level.INFO, "this is the action: " + action.toString());
-
         return action;
     }
 

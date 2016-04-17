@@ -68,9 +68,6 @@ public abstract class AbstractResponseBehaviour implements ResponseBehaviour {
 
     private void addReaction(List<ReactionMessage> reactions){
         for(ReactionMessage reaction : reactions){
-            l.log(Level.INFO, "add a reaction: emoji: "
-                    + reaction.getEmojiName() + "| reaction timestamp: " + reaction.getMessageTimestamp());
-
             slackWebApiClient.addReactionToMessage(reaction.getEmojiName(),
                     reaction.getChannel(), reaction.getMessageTimestamp());
         }

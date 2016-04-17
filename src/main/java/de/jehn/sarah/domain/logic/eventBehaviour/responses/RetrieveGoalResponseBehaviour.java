@@ -42,9 +42,6 @@ public class RetrieveGoalResponseBehaviour extends AbstractResponseBehaviour {
     @Override
     protected String constructResponse(JsonNode event, ActionResult result, String predefinedText) {
         String response = predefinedText;
-
-        l.log(Level.INFO, "constructResponse: current response: " + response + "result size = " + result.size());
-
         for (int i = 0; i < result.size(); i ++){
             response = response.concat("    \n");
             response = response.concat(":"+EmojiMapper.getEmojiForNumber(i + 1)+":");
@@ -61,10 +58,6 @@ public class RetrieveGoalResponseBehaviour extends AbstractResponseBehaviour {
         String channel = getChannel(event);
         History lastMessage = slackWebApiClient.getDirectMessageChannelHistory(channel, 1);
         String timestampOfLastMessage = lastMessage.getMessages().get(0).getTs();
-
-        l.log(Level.INFO, "timestamp of channel history: " + timestampOfLastMessage +
-                "channel history" + slackWebApiClient.getDirectMessageChannelHistory(channel).toString());
-
         List<ReactionMessage> reactions = new ArrayList<>();
         for(int i = 1; i <= numberOfGoals; i++){
             reactions.add(new ReactionMessage(EmojiMapper.getEmojiForNumber(i), channel, timestampOfLastMessage));

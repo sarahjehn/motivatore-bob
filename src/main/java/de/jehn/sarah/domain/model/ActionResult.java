@@ -6,7 +6,7 @@ import java.util.List;
 /**
  * Created by sarahjehn on 16.04.16.
  */
-public class ActionResult<T> implements Iterator<T> {
+public class ActionResult<T> {
 
     private final List<T> actionResult;
 
@@ -16,16 +16,6 @@ public class ActionResult<T> implements Iterator<T> {
 
     public List<T> getActionResult() {
         return actionResult;
-    }
-
-    @Override
-    public boolean hasNext() {
-        return actionResult.iterator().hasNext();
-    }
-
-    @Override
-    public T next() {
-        return actionResult.iterator().next();
     }
 
     public int size(){

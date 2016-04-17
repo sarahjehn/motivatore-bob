@@ -52,7 +52,7 @@ public class SimpleServiceBehaviourFactory {
         } if (type.equals(REMOVE_GOAL)){
             responseBehaviour = new RemoveGoalResponseBehaviour(client);
         }
-        l.log(Level.INFO, "Instantiated Action Behaviour: " + responseBehaviour.getClass().getName());
+        l.log(Level.INFO, "Instantiated Response Behaviour: " + responseBehaviour.getClass().getName());
         return responseBehaviour;
     }
 }

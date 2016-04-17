@@ -82,7 +82,6 @@ public class PostgresGoalRepository extends Repository implements GoalRepository
             sqlResult = statement.executeQuery();
             while(sqlResult.next()){
                 result.add(sqlResult.getString(1));
-                l.log(Level.INFO, "das ist ein Result: " + sqlResult.getString(1));
             }
             statement.close();
             connection.close();
@@ -96,9 +95,6 @@ public class PostgresGoalRepository extends Repository implements GoalRepository
     public List<Goal> getRemainingGoals(LocalDateTime date, String user) {
 
         int goalWeek = Integer.parseInt(date.format(DateTimeFormatter.ofPattern("ww")));
-
-        l.log(Level.INFO, "This is the week it is looked for: " + goalWeek + " and the user: " + user);
-
         ResultSet sqlResult = null;
         List<Goal> result = new LinkedList<>();
 

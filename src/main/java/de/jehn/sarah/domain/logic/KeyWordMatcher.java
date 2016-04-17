@@ -34,14 +34,11 @@ public class KeyWordMatcher {
                 .replaceAll(space, ";")
                 .replaceAll("NEW_GOAL", ">")
                 .toLowerCase();
-
-        l.log(Level.INFO, "prepared text: "+preparedText);
         String [] wordsInMessage = preparedText.split(";");
         String [] preparedWordsInMessage = new String [wordsInMessage.length];
         for(int i = 0; i < wordsInMessage.length; i++){
             String s = wordsInMessage[i].replace(";", "");
             preparedWordsInMessage[i] = s;
-            l.log(Level.INFO, "prepared word: " + s);
         }
         return preparedWordsInMessage;
     }

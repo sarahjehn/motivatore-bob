@@ -32,10 +32,8 @@ public class EventHandler implements EventListener {
     @Override
     public void handleMessage(JsonNode event) {
         l.log(Level.INFO, "Message received: " + event);
-
         MessageType classification = classifier.getEventClassification(event);
         l.log(Level.INFO, "Classified Type = " + classification);
-
         ActionResult result = service.startAction(classification, event);
         service.startResponse(classification, event, result, slackWebApiClient);
      }

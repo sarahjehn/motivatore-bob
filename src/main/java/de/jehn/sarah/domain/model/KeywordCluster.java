@@ -8,11 +8,6 @@ public class KeywordCluster {
     private MessageType type;
     private String[] keywords;
 
-    public KeywordCluster(MessageType type, String[] keywords){
-        this.type = type;
-        this.keywords = keywords;
-    }
-
     public KeywordCluster(){
     }
 
