@@ -1,7 +1,9 @@
 {
-"clusters":[{"type":"NEW_GOAL", "keywords":[">"]},
+"clusters":[
+  {"type":"NEW_GOAL", "keywords":[">"]},
   {"type":"GREETING", "keywords":["hi"]},
   {"type":"GREETING", "keywords":["hello"]},
-  {"type":"RETRIEVE_RECENT_GOALS", "keywords":["show","goals"]}
+  {"type":"RETRIEVE_RECENT_GOALS", "keywords":["show","goals"]},
+  {"type": "BYE_BYE", "keywords":["bye"]}
 ]
 }

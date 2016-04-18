@@ -3,6 +3,7 @@
     {"type":"NEW_GOAL", "text": "Good choice! I will help you to reach it! You can retrieve your week's goals by typing `show goals`"},
     {"type":"NO_MATCH", "text": "I don't get it - you want to create a new goal? Type \"new goal:\" and what you want to achieve this week"},
     {"type":"RETRIEVE_RECENT_GOALS", "text": ":hugging_face: These are your goals of the week: "},
-    {"type":"REMOVE_GOAL", "text": "You can be very proud that you reached that goal! Your remaining goals are: "}
+    {"type":"REMOVE_GOAL", "text": "You can be very proud that you reached that goal! Your remaining goals are: "},
+    {"type": "BYE_BYE", "text": "Bye, see you later this week! In case I am asleep and you need me, click: https://motivatore-bob.herokuapp.com/bob/"}
   ]
 }

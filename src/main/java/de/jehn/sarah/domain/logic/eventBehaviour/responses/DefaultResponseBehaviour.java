@@ -50,7 +50,4 @@ public class DefaultResponseBehaviour extends AbstractResponseBehaviour {
         return null;
     }
 
-    public void setMessageType(){
-        this.type = type;
-    }
 }
